@@ -89,6 +89,17 @@ final class StatusItemController: NSObject {
 
     @objc private func showAbout() {
         NSApp.activate()
-        NSApp.orderFrontStandardAboutPanel(nil)
+        NSApp.orderFrontStandardAboutPanel(options: [.credits: Self.aboutCredits])
     }
+
+    private static let aboutCredits: NSAttributedString = {
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+
+        return NSAttributedString(string: "jts-workshop.com", attributes: [
+            .link: URL(string: "https://jts-workshop.com/")!,
+            .font: NSFont.systemFont(ofSize: NSFont.smallSystemFontSize),
+            .paragraphStyle: paragraph,
+        ])
+    }()
 }
